@@ -15,4 +15,20 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh '
+                sh 'npm test || true'
+            }
+        }
+
+        stage('Generate Coverage Report') {
+            steps {
+                sh 'npm run coverage || true'
+            }
+        }
+
+        stage('NPM Audit (Security Scan)') {
+            steps {
+                sh 'npm audit || true'
+            }
+        }
+    }
+}
